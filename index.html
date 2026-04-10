@@ -30,9 +30,6 @@
             .table-shadow {
                 box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             }
-            .btn-hover {
-                @apply transition-all duration-200 hover:shadow-md hover:-translate-y-0.5;
-            }
         }
     </style>
 </head>
@@ -43,40 +40,6 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-2">商品数据表格</h1>
             <p class="text-gray-600">用于爬虫练习的静态数据</p>
         </header>
-
-        <!-- 操作栏 -->
-        <div class="flex flex-wrap justify-between items-center mb-6 gap-4">
-            <div class="flex flex-wrap gap-4">
-                <div class="relative">
-                    <select id="category-filter" class="appearance-none bg-white border border-gray-300 rounded-lg py-2 px-4 pr-8 focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="all">所有类型</option>
-                        <option value="电子产品">电子产品</option>
-                        <option value="服装">服装</option>
-                        <option value="食品">食品</option>
-                        <option value="家居用品">家居用品</option>
-                        <option value="运动户外">运动户外</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <i class="fa fa-chevron-down text-xs"></i>
-                    </div>
-                </div>
-                <div class="relative">
-                    <select id="sort-by" class="appearance-none bg-white border border-gray-300 rounded-lg py-2 px-4 pr-8 focus:outline-none focus:ring-2 focus:ring-primary">
-                        <option value="id">默认排序</option>
-                        <option value="sales">销量从高到低</option>
-                        <option value="price-asc">价格从低到高</option>
-                        <option value="price-desc">价格从高到低</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <i class="fa fa-chevron-down text-xs"></i>
-                    </div>
-                </div>
-            </div>
-            <button id="export-btn" class="bg-primary text-white py-2 px-4 rounded-lg btn-hover flex items-center gap-2">
-                <i class="fa fa-download"></i>
-                导出CSV
-            </button>
-        </div>
 
         <!-- 数据表格 -->
         <div class="overflow-x-auto table-shadow bg-white rounded-lg">
@@ -93,174 +56,516 @@
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">描述</th>
                     </tr>
                 </thead>
-                <tbody id="product-table" class="bg-white divide-y divide-gray-200">
-                    <!-- 数据将通过JavaScript动态生成 -->
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P001</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">智能手机</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥3999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1250</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-01-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">高性能智能手机，支持5G网络</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P002</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">笔记本电脑</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥5999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">890</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">35</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-01-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">轻薄便携，高性能处理器</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P003</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">无线耳机</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">120</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-01-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">主动降噪，长续航</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P004</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">智能手表</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥1599</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">80</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-01-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">健康监测，运动追踪</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P005</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">平板电脑</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥2999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">750</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">45</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">高清屏幕，多任务处理</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P006</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">T恤</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥99</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">纯棉面料，舒适透气</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P007</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛仔裤</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥299</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">经典款式，耐穿百搭</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P008</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">运动鞋</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥499</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">90</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">轻便透气，减震防滑</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P009</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">羽绒服</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥799</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">950</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">60</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">保暖防风，轻便舒适</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P010</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">衬衫</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥199</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">180</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">商务休闲，版型修身</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P011</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">牛奶</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥69</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">300</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-12-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">新鲜纯牛奶，营养丰富</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P012</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">面包</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥29</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">400</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">松软可口，早餐必备</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P013</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">水果礼盒</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥199</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">850</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">新鲜水果组合，送礼佳品</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P014</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">巧克力</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥89</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">进口巧克力，口感丝滑</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P015</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">坚果礼盒</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥159</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">多种坚果组合，营养健康</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P016</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">沙发</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥3999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">350</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">舒适沙发，现代风格</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P017</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">床</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥4999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">280</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">实木床架，环保材质</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P018</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">餐桌</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥2499</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">420</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-11-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">简约设计，稳固耐用</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P019</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">椅子</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥599</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">人体工学设计，舒适支撑</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P020</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">衣柜</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥2999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">320</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">18</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">大容量收纳，防潮防虫</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P021</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">篮球</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥199</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">专业比赛用球，耐磨耐用</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P022</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">跑步机</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥2999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">450</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">30</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">家用跑步机，静音设计</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P023</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">瑜伽垫</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥89</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">300</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">防滑瑜伽垫，环保材质</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P024</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">自行车</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥1299</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">750</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">80</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">轻便自行车，城市通勤</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P025</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">运动背包</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥299</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-10-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">多功能运动背包，防水设计</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P026</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">智能音箱</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥399</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2100</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">250</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">语音助手，高品质音效</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P027</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">相机</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥4999</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">650</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">40</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">高清数码相机，专业画质</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P028</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">游戏手柄</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥399</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">无线游戏手柄，兼容多平台</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P029</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">充电宝</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥129</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">400</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">大容量充电宝，快充支持</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P030</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">键盘</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">电子产品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥299</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">180</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">机械键盘， RGB灯效</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P031</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">外套</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥399</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">防风外套，时尚百搭</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P032</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">裙子</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥249</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-09-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">优雅裙子，舒适面料</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P033</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">袜子</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥39</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">5000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">纯棉袜子，透气吸汗</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P034</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">帽子</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥89</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">时尚帽子，防晒遮阳</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P035</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">手套</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">服装</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥59</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">180</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">保暖手套，触屏支持</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P036</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">饼干</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥49</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">400</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">酥脆饼干，多种口味</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P037</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">饮料</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥19</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">8000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">解渴饮料，清爽口感</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P038</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">糖果</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥29</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">300</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">甜蜜糖果，多种口味</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P039</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">方便面</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥15</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6000</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-08-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">速食方便面，方便快捷</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P040</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">火腿肠</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">食品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥35</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">4500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">600</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">美味火腿肠，营养丰富</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P041</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">台灯</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥199</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">护眼台灯，可调亮度</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P042</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">垃圾桶</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥49</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">400</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">脚踏垃圾桶，卫生方便</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P043</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">拖把</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥89</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">300</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">旋转拖把，轻松清洁</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P044</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">收纳盒</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥59</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-10</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">多功能收纳盒，整理有序</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P045</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">花瓶</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">家居用品</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥129</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">950</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">120</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-05</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">装饰花瓶，美观大方</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P046</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">足球</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥149</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-07-01</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">标准足球，耐磨耐用</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P047</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">篮球鞋</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥599</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">950</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">120</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-28</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">专业篮球鞋，缓震支撑</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P048</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">羽毛球拍</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥249</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1500</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">200</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-25</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">专业羽毛球拍，轻便耐用</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P049</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">游泳镜</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥89</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1800</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">250</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-20</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">防雾游泳镜，清晰视野</td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">P050</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">健身器材</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">运动户外</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥1299</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">650</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">80</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2023-06-15</td>
+                        <td class="px-6 py-4 text-sm text-gray-500">家用健身器材，全面锻炼</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
         <!-- 页脚 -->
         <footer class="mt-8 text-center text-gray-600">
-            <p>数据统计：共 <span id="total-count">0</span> 条商品记录</p>
+            <p>数据统计：共 50 条商品记录</p>
             <p class="mt-2 text-sm">© 2026 商品数据表格 - 用于爬虫练习</p>
         </footer>
     </div>
-
-    <script>
-        // 商品数据
-        const products = [
-            {id: "P001", name: "智能手机", category: "电子产品", price: 3999, sales: 1250, stock: 50,上架日期: "2024-01-15", description: "高性能智能手机，支持5G网络"},
-            {id: "P002", name: "笔记本电脑", category: "电子产品", price: 5999, sales: 890, stock: 35,上架日期: "2024-01-10", description: "轻薄便携，高性能处理器"},
-            {id: "P003", name: "无线耳机", category: "电子产品", price: 999, sales: 2100, stock: 120,上架日期: "2024-01-05", description: "主动降噪，长续航"},
-            {id: "P004", name: "智能手表", category: "电子产品", price: 1599, sales: 1500, stock: 80,上架日期: "2024-01-01", description: "健康监测，运动追踪"},
-            {id: "P005", name: "平板电脑", category: "电子产品", price: 2999, sales: 750, stock: 45,上架日期: "2023-12-28", description: "高清屏幕，多任务处理"},
-            {id: "P006", name: "T恤", category: "服装", price: 99, sales: 3200, stock: 200,上架日期: "2023-12-25", description: "纯棉面料，舒适透气"},
-            {id: "P007", name: "牛仔裤", category: "服装", price: 299, sales: 1800, stock: 150,上架日期: "2023-12-20", description: "经典款式，耐穿百搭"},
-            {id: "P008", name: "运动鞋", category: "服装", price: 499, sales: 1200, stock: 90,上架日期: "2023-12-15", description: "轻便透气，减震防滑"},
-            {id: "P009", name: "羽绒服", category: "服装", price: 799, sales: 950, stock: 60,上架日期: "2023-12-10", description: "保暖防风，轻便舒适"},
-            {id: "P010", name: "衬衫", category: "服装", price: 199, sales: 2100, stock: 180,上架日期: "2023-12-05", description: "商务休闲，版型修身"},
-            {id: "P011", name: "牛奶", category: "食品", price: 69, sales: 5000, stock: 300,上架日期: "2023-12-01", description: "新鲜纯牛奶，营养丰富"},
-            {id: "P012", name: "面包", category: "食品", price: 29, sales: 4200, stock: 400,上架日期: "2023-11-28", description: "松软可口，早餐必备"},
-            {id: "P013", name: "水果礼盒", category: "食品", price: 199, sales: 850, stock: 100,上架日期: "2023-11-25", description: "新鲜水果组合，送礼佳品"},
-            {id: "P014", name: "巧克力", category: "食品", price: 89, sales: 1500, stock: 200,上架日期: "2023-11-20", description: "进口巧克力，口感丝滑"},
-            {id: "P015", name: "坚果礼盒", category: "食品", price: 159, sales: 1200, stock: 150,上架日期: "2023-11-15", description: "多种坚果组合，营养健康"},
-            {id: "P016", name: "沙发", category: "家居用品", price: 3999, sales: 350, stock: 20,上架日期: "2023-11-10", description: "舒适沙发，现代风格"},
-            {id: "P017", name: "床", category: "家居用品", price: 4999, sales: 280, stock: 15,上架日期: "2023-11-05", description: "实木床架，环保材质"},
-            {id: "P018", name: "餐桌", category: "家居用品", price: 2499, sales: 420, stock: 25,上架日期: "2023-11-01", description: "简约设计，稳固耐用"},
-            {id: "P019", name: "椅子", category: "家居用品", price: 599, sales: 1800, stock: 100,上架日期: "2023-10-28", description: "人体工学设计，舒适支撑"},
-            {id: "P020", name: "衣柜", category: "家居用品", price: 2999, sales: 320, stock: 18,上架日期: "2023-10-25", description: "大容量收纳，防潮防虫"},
-            {id: "P021", name: "篮球", category: "运动户外", price: 199, sales: 1200, stock: 150,上架日期: "2023-10-20", description: "专业比赛用球，耐磨耐用"},
-            {id: "P022", name: "跑步机", category: "运动户外", price: 2999, sales: 450, stock: 30,上架日期: "2023-10-15", description: "家用跑步机，静音设计"},
-            {id: "P023", name: "瑜伽垫", category: "运动户外", price: 89, sales: 2500, stock: 300,上架日期: "2023-10-10", description: "防滑瑜伽垫，环保材质"},
-            {id: "P024", name: "自行车", category: "运动户外", price: 1299, sales: 750, stock: 80,上架日期: "2023-10-05", description: "轻便自行车，城市通勤"},
-            {id: "P025", name: "运动背包", category: "运动户外", price: 299, sales: 1500, stock: 200,上架日期: "2023-10-01", description: "多功能运动背包，防水设计"},
-            {id: "P026", name: "智能音箱", category: "电子产品", price: 399, sales: 2100, stock: 250,上架日期: "2023-09-28", description: "语音助手，高品质音效"},
-            {id: "P027", name: "相机", category: "电子产品", price: 4999, sales: 650, stock: 40,上架日期: "2023-09-25", description: "高清数码相机，专业画质"},
-            {id: "P028", name: "游戏手柄", category: "电子产品", price: 399, sales: 1800, stock: 200,上架日期: "2023-09-20", description: "无线游戏手柄，兼容多平台"},
-            {id: "P029", name: "充电宝", category: "电子产品", price: 129, sales: 3500, stock: 400,上架日期: "2023-09-15", description: "大容量充电宝，快充支持"},
-            {id: "P030", name: "键盘", category: "电子产品", price: 299, sales: 1500, stock: 180,上架日期: "2023-09-10", description: "机械键盘， RGB灯效"},
-            {id: "P031", name: "外套", category: "服装", price: 399, sales: 1200, stock: 150,上架日期: "2023-09-05", description: "防风外套，时尚百搭"},
-            {id: "P032", name: "裙子", category: "服装", price: 249, sales: 1800, stock: 200,上架日期: "2023-09-01", description: "优雅裙子，舒适面料"},
-            {id: "P033", name: "袜子", category: "服装", price: 39, sales: 5000, stock: 500,上架日期: "2023-08-28", description: "纯棉袜子，透气吸汗"},
-            {id: "P034", name: "帽子", category: "服装", price: 89, sales: 1500, stock: 200,上架日期: "2023-08-25", description: "时尚帽子，防晒遮阳"},
-            {id: "P035", name: "手套", category: "服装", price: 59, sales: 1200, stock: 180,上架日期: "2023-08-20", description: "保暖手套，触屏支持"},
-            {id: "P036", name: "饼干", category: "食品", price: 49, sales: 3200, stock: 400,上架日期: "2023-08-15", description: "酥脆饼干，多种口味"},
-            {id: "P037", name: "饮料", category: "食品", price: 19, sales: 8000, stock: 1000,上架日期: "2023-08-10", description: "解渴饮料，清爽口感"},
-            {id: "P038", name: "糖果", category: "食品", price: 29, sales: 2500, stock: 300,上架日期: "2023-08-05", description: "甜蜜糖果，多种口味"},
-            {id: "P039", name: "方便面", category: "食品", price: 15, sales: 6000, stock: 800,上架日期: "2023-08-01", description: "速食方便面，方便快捷"},
-            {id: "P040", name: "火腿肠", category: "食品", price: 35, sales: 4500, stock: 600,上架日期: "2023-07-28", description: "美味火腿肠，营养丰富"},
-            {id: "P041", name: "台灯", category: "家居用品", price: 199, sales: 1800, stock: 200,上架日期: "2023-07-25", description: "护眼台灯，可调亮度"},
-            {id: "P042", name: "垃圾桶", category: "家居用品", price: 49, sales: 3200, stock: 400,上架日期: "2023-07-20", description: "脚踏垃圾桶，卫生方便"},
-            {id: "P043", name: "拖把", category: "家居用品", price: 89, sales: 2500, stock: 300,上架日期: "2023-07-15", description: "旋转拖把，轻松清洁"},
-            {id: "P044", name: "收纳盒", category: "家居用品", price: 59, sales: 3500, stock: 500,上架日期: "2023-07-10", description: "多功能收纳盒，整理有序"},
-            {id: "P045", name: "花瓶", category: "家居用品", price: 129, sales: 950, stock: 120,上架日期: "2023-07-05", description: "装饰花瓶，美观大方"},
-            {id: "P046", name: "足球", category: "运动户外", price: 149, sales: 1200, stock: 150,上架日期: "2023-07-01", description: "标准足球，耐磨耐用"},
-            {id: "P047", name: "篮球鞋", category: "运动户外", price: 599, sales: 950, stock: 120,上架日期: "2023-06-28", description: "专业篮球鞋，缓震支撑"},
-            {id: "P048", name: "羽毛球拍", category: "运动户外", price: 249, sales: 1500, stock: 200,上架日期: "2023-06-25", description: "专业羽毛球拍，轻便耐用"},
-            {id: "P049", name: "游泳镜", category: "运动户外", price: 89, sales: 1800, stock: 250,上架日期: "2023-06-20", description: "防雾游泳镜，清晰视野"},
-            {id: "P050", name: "健身器材", category: "运动户外", price: 1299, sales: 650, stock: 80,上架日期: "2023-06-15", description: "家用健身器材，全面锻炼"}
-        ];
-
-        // 渲染表格
-        function renderTable(data) {
-            const tableBody = document.getElementById('product-table');
-            tableBody.innerHTML = '';
-            
-            data.forEach(product => {
-                const row = document.createElement('tr');
-                row.className = 'hover:bg-gray-50 transition-colors';
-                
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product.id}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${product.name}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.category}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">¥${product.price}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.sales}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.stock}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.上架日期}</td>
-                    <td class="px-6 py-4 text-sm text-gray-500">${product.description}</td>
-                `;
-                
-                tableBody.appendChild(row);
-            });
-            
-            // 更新数据统计
-            document.getElementById('total-count').textContent = data.length;
-        }
-
-        // 筛选和排序功能
-        function filterAndSort() {
-            const categoryFilter = document.getElementById('category-filter').value;
-            const sortBy = document.getElementById('sort-by').value;
-            
-            let filteredData = [...products];
-            
-            // 按类别筛选
-            if (categoryFilter !== 'all') {
-                filteredData = filteredData.filter(product => product.category === categoryFilter);
-            }
-            
-            // 排序
-            switch (sortBy) {
-                case 'sales':
-                    filteredData.sort((a, b) => b.sales - a.sales);
-                    break;
-                case 'price-asc':
-                    filteredData.sort((a, b) => a.price - b.price);
-                    break;
-                case 'price-desc':
-                    filteredData.sort((a, b) => b.price - a.price);
-                    break;
-                default:
-                    // 默认按ID排序
-                    filteredData.sort((a, b) => a.id.localeCompare(b.id));
-            }
-            
-            renderTable(filteredData);
-        }
-
-        // 导出CSV功能
-        function exportCSV() {
-            const headers = ['ID', '商品名称', '类型', '单价', '销量', '库存', '上架日期', '描述'];
-            const rows = products.map(product => [
-                product.id,
-                product.name,
-                product.category,
-                product.price,
-                product.sales,
-                product.stock,
-                product.上架日期,
-                product.description
-            ]);
-            
-            const csvContent = [
-                headers.join(','),
-                ...rows.map(row => row.join(','))
-            ].join('\n');
-            
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            
-            link.setAttribute('href', url);
-            link.setAttribute('download', '商品数据.csv');
-            link.style.visibility = 'hidden';
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始渲染表格
-            renderTable(products);
-            
-            // 绑定事件
-            document.getElementById('category-filter').addEventListener('change', filterAndSort);
-            document.getElementById('sort-by').addEventListener('change', filterAndSort);
-            document.getElementById('export-btn').addEventListener('click', exportCSV);
-        });
-    </script>
 </body>
 </html>
